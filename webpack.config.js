@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const UglifyIsPlugin = require("uglifyjs-webpack-plugin"); 
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); 
 
 module.exports = {
     entry: "./src/index.js",
@@ -34,18 +34,18 @@ devServer: {
     watchContentBase: true,
     historyApiFallback: true,
 },
-//optimization: {
-   // minimizer: [
-       // new uglifyjsplugin({
-  //          uglifyOptions: {
-   //             mangle: {
-    //                keep_fnames: true,
-//
- //               },
-  //          },
-  //      }),
-  //  ],
-//},
+optimization: {
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+               mangle: {
+                   keep_fnames: true,
+
+                },
+           },
+       }),
+    ],
+},
 plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
